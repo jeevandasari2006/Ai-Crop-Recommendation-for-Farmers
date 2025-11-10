@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast - Agro Advisor AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <div class="page-container">
+        <!-- Header -->
+        <header class="page-header">
+            <button class="back-btn" onclick="location.href='dashboard.html'">
+                <i class="fas fa-arrow-left"></i> <span data-i18n="backText">Back</span>
+            </button>
+            <h1 data-i18n="weatherPageTitle">Weather Forecast</h1>
+            <div></div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="page-content">
+            <div class="content-card glass-card">
+                <h2 data-i18n="weatherPageTitle">Get Weather Updates & 7-Day Forecast</h2>
+                
+                <div class="form-group">
+                    <label data-i18n="regionLabel">Enter City or Region</label>
+                    <div style="display: flex; gap: 1rem;">
+                        <input type="text" id="cityInput" placeholder="Enter city name..." data-i18n="cityPlaceholder" data-i18n-attr="placeholder" style="flex: 1;">
+                        <button class="btn-location" id="useLocationBtn" title="Use my location" data-i18n="useLocationTitle" data-i18n-attr="title">
+                            <i class="fas fa-location-arrow"></i> <span data-i18n="useLocationText">Use My Location</span>
+                        </button>
+                        <button class="btn-primary" id="getWeatherBtn" style="width: auto; padding: 0 2rem;">
+                            <i class="fas fa-search"></i> <span data-i18n="getWeatherText">Get Weather</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="weather-display hidden" id="weatherDisplay">
+                    <div class="current-weather glass-card" id="currentWeather">
+                        <h3 id="cityName">Loading...</h3>
+                        <div class="weather-temp" id="temperature">--°C</div>
+                        <div class="weather-desc" id="description">--</div>
+                        <div class="weather-details">
+                            <p><i class="fas fa-tint"></i> Humidity: <span id="humidity">--%</span></p>
+                            <p><i class="fas fa-wind"></i> Wind: <span id="windSpeed">-- m/s</span></p>
+                            <p><i class="fas fa-compress"></i> Pressure: <span id="pressure">-- hPa</span></p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 2rem 0 1rem; color: var(--primary-blue);" data-i18n="forecastTitle">7-Day Forecast</h3>
+                    <div class="forecast" id="forecast"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="language.js"></script>
+    <script src="weather.js"></script>
+</body>
+</html>

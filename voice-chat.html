@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice & Text Chat - Agro Advisor AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <div class="page-container">
+        <!-- Header -->
+        <header class="page-header">
+            <button class="back-btn" onclick="location.href='dashboard.html'">
+                <i class="fas fa-arrow-left"></i> <span id="backText" data-i18n="backText">Back</span>
+            </button>
+            <h1 id="pageTitle" data-i18n="voiceChatTitle">Voice & Text Chat</h1>
+            <div></div>
+        </header>
+
+        <!-- Voice Circle Section -->
+        <section class="voice-section">
+            <div class="voice-circle-container">
+                <div class="voice-circle idle" id="voiceCircle">
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="inner-circle">
+                        <i class="fas fa-microphone" id="micIcon"></i>
+                    </div>
+                </div>
+                <p class="voice-status" id="voiceStatus" data-i18n="voiceStatus">Tap to speak or type below</p>
+            </div>
+        </section>
+
+        <!-- Chat Container -->
+        <section class="chat-section">
+            <div class="chat-container glass-card">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="chat-message bot">
+                        <div class="message-content" id="welcomeMsg" data-i18n="welcomeMsg">👋 Hello there! I'm your friendly AI farming assistant. I'm here to help with crop recommendations, weather insights, soil health, pest control, and general agricultural advice. Just ask me anything about farming! 🌱</div>
+                    </div>
+                    <div class="chat-message bot">
+                        <div class="message-content" id="noteMsg">📝 <strong>Note:</strong> Please ask about agriculture-related topics. If the topic is not related to agriculture, I'll let you know it's not related.</div>
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chatInput" placeholder="Type your question..." data-i18n="chatPlaceholder" data-i18n-attr="placeholder">
+                    <button class="voice-btn" id="voiceBtn">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button class="send-btn" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="language.js"></script>
+    <script src="voice-chat.js"></script>
+</body>
+</html>

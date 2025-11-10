@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Detection - Agro Advisor AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <div class="page-container">
+        <!-- Header -->
+        <header class="page-header">
+            <button class="back-btn" onclick="location.href='dashboard.html'">
+                <i class="fas fa-arrow-left"></i> <span id="backText" data-i18n="backText">Back</span>
+            </button>
+            <h1 id="pageTitle" data-i18n="diseasePageTitle">Disease Detection</h1>
+            <div></div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="page-content">
+            <div class="content-card glass-card">
+                <h2 id="uploadTitle" data-i18n="diseasePageTitle">Upload Plant Photo</h2>
+                <p id="uploadDesc" data-i18n="diseaseSubtitle">Take or upload a photo of your plant to detect diseases</p>
+                <p style="color: var(--warning-orange); font-size: 0.9rem; margin-top: 0.5rem;">Note: This is a demonstration system. Actual disease detection would require AI image analysis.</p>
+                
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-camera upload-icon"></i>
+                    <p id="uploadText" data-i18n="uploadArea">Click to upload or drag & drop plant photo</p>
+                    <small id="formatText" data-i18n="supportedFormats">Supported: JPG, PNG</small>
+                    <input type="file" id="diseaseImage" accept="image/*" hidden>
+                </div>
+
+                <div class="disease-result hidden" id="diseaseResult">
+                    <img id="uploadedImage" alt="Uploaded plant" class="uploaded-img">
+                    <div class="result-card glass-card">
+                        <h3 id="resultTitle" data-i18n="resultTitle">Detection Result</h3>
+                    <p style="color: var(--warning-orange); font-size: 0.9rem; margin-top: 0.5rem;">Note: This is a simulated result for demonstration purposes.</p>
+                        <div class="result-info">
+                            <p><strong id="diseaseLabel" data-i18n="diseaseLabel">Disease:</strong> <span id="diseaseName"></span></p>
+                            <p><strong>Category:</strong> <span id="diseaseCategory"></span> (<span id="diseaseType"></span>)</p>
+                            <p><strong id="causeLabel" data-i18n="causeLabel">Cause:</strong> <span id="diseaseCause"></span></p>
+                            <p><strong id="symptomsLabel">Symptoms:</strong> <span id="diseaseSymptoms"></span></p>
+                            <p><strong id="treatmentLabel" data-i18n="treatmentLabel">Treatment:</strong> <span id="diseaseTreatment"></span></p>
+                            <p><strong id="preventionLabel">Prevention:</strong> <span id="diseasePrevention"></span></p>
+                            <p><strong id="confidenceLabel" data-i18n="confidenceLabel">Confidence:</strong> <span id="confidence"></span></p>
+                        </div>
+                        <button class="btn-primary" id="saveReport">
+                            <i class="fas fa-save"></i> <span id="saveText" data-i18n="saveReportText">Save Report</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="language.js"></script>
+    <script src="disease.js"></script>
+</body>
+</html>

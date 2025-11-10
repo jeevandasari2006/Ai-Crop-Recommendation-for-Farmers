@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Suggestion - Agro Advisor AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <div class="page-container">
+        <!-- Header -->
+        <header class="page-header">
+            <button class="back-btn" onclick="location.href='dashboard.html'">
+                <i class="fas fa-arrow-left"></i> <span data-i18n="backText">Back</span>
+            </button>
+            <h1 data-i18n="cropPageTitle">Crop Suggestion AI</h1>
+            <div></div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="page-content">
+            <div class="content-card glass-card">
+                <h2 data-i18n="cropPageTitle">Get AI-Powered Crop Recommendations</h2>
+                <p style="color: var(--text-gray); margin-bottom: 2rem;" data-i18n="cropSubtitle">Based on soil type, weather, and market prices</p>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label data-i18n="soilTypeLabel">Soil Type</label>
+                        <select id="soilType">
+                            <option value="loamy">Loamy</option>
+                            <option value="clay">Clay</option>
+                            <option value="sandy">Sandy</option>
+                            <option value="silt">Silt</option>
+                            <option value="peat">Peat</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="regionLabel">Region/Location</label>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <input type="text" id="region" placeholder="Enter your region" data-i18n="regionPlaceholder" data-i18n-attr="placeholder" style="flex: 1;">
+                            <button type="button" class="btn-location" id="detectLocationBtn" title="Detect my location">
+                                <i class="fas fa-location-arrow"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="landSizeLabel">Land Size (acres)</label>
+                        <input type="number" id="landSize" placeholder="Enter land size" data-i18n="landSizePlaceholder" data-i18n-attr="placeholder" min="0" step="0.1">
+                    </div>
+
+                    <div class="form-group">
+                        <label data-i18n="seasonLabel">Season</label>
+                        <select id="season">
+                            <option value="kharif">Kharif (Monsoon)</option>
+                            <option value="rabi">Rabi (Winter)</option>
+                            <option value="zaid">Zaid (Summer)</option>
+                        </select>
+                    </div>
+
+                    <!-- Nutrient Level Meters -->
+                    <div class="form-group">
+                        <label>Nitrogen Level</label>
+                        <div class="nutrient-meter">
+                            <input type="range" id="nitrogenLevel" min="0" max="100" value="50" class="nutrient-slider">
+                            <div class="nutrient-value" id="nitrogenValue">50%</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phosphorus Level</label>
+                        <div class="nutrient-meter">
+                            <input type="range" id="phosphorusLevel" min="0" max="100" value="50" class="nutrient-slider">
+                            <div class="nutrient-value" id="phosphorusValue">50%</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Potassium Level</label>
+                        <div class="nutrient-meter">
+                            <input type="range" id="potassiumLevel" min="0" max="100" value="50" class="nutrient-slider">
+                            <div class="nutrient-value" id="potassiumValue">50%</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Soil pH Level</label>
+                        <div class="nutrient-meter">
+                            <input type="range" id="phLevel" min="0" max="140" value="70" class="nutrient-slider">
+                            <div class="nutrient-value" id="phValue">7.0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-primary" id="getSuggestionsBtn">
+                    <i class="fas fa-magic"></i> Get Crop Suggestions
+                </button>
+
+                <div class="crop-results hidden" id="cropResults">
+                    <h3 style="color: var(--primary-green); margin: 2rem 0 1rem;">All Recommended Crops</h3>
+                    <div class="crop-list" id="cropList"></div>
+                    
+                    <h3 style="color: var(--primary-blue); margin: 2rem 0 1rem;">Profit Comparison</h3>
+                    <canvas id="profitChart"></canvas>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="language.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="crop.js"></script>
+    <script>
+        // Update nutrient value displays when sliders change
+        document.getElementById('nitrogenLevel').addEventListener('input', function() {
+            document.getElementById('nitrogenValue').textContent = this.value + '%';
+        });
+        
+        document.getElementById('phosphorusLevel').addEventListener('input', function() {
+            document.getElementById('phosphorusValue').textContent = this.value + '%';
+        });
+        
+        document.getElementById('potassiumLevel').addEventListener('input', function() {
+            document.getElementById('potassiumValue').textContent = this.value + '%';
+        });
+        
+        document.getElementById('phLevel').addEventListener('input', function() {
+            // Convert to decimal value (0-14)
+            const phValue = (this.value / 10).toFixed(1);
+            document.getElementById('phValue').textContent = phValue;
+        });
+    </script>
+</body>
+</html>

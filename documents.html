@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documents - Agro Advisor AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <div class="page-container">
+        <!-- Header -->
+        <header class="page-header">
+            <button class="back-btn" onclick="location.href='dashboard.html'">
+                <i class="fas fa-arrow-left"></i> <span data-i18n="backText">Back</span>
+            </button>
+            <h1 data-i18n="docPageTitle">Document Upload</h1>
+            <div></div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="page-content">
+            <div class="content-card glass-card">
+                <h2 data-i18n="docPageTitle">Upload Soil Reports & Crop Data</h2>
+                <p style="color: var(--text-gray); margin-bottom: 2rem;" data-i18n="docSubtitle">Upload your documents securely to the cloud</p>
+                
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    <p data-i18n="uploadArea">Click to upload or drag & drop files here</p>
+                    <small data-i18n="supportedFormats">Supported: PDF, DOCX, JPG, PNG (Max 10MB)</small>
+                    <input type="file" id="documentFile" accept=".pdf,.docx,.jpg,.jpeg,.png" multiple hidden>
+                </div>
+
+                <div class="uploaded-files" id="uploadedFiles">
+                    <h3 style="color: var(--primary-green); margin: 2rem 0 1rem;" data-i18n="recentDocs">Uploaded Documents</h3>
+                    <div id="filesList"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="language.js"></script>
+    <script src="documents.js"></script>
+</body>
+</html>

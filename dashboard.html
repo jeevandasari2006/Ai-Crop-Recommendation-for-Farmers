@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Agro Advisor AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <div class="dashboard">
+        <!-- Top Navigation -->
+        <header class="top-nav">
+            <div class="nav-brand">
+                <img src="logo.svg" alt="Logo" class="nav-logo-img">
+                <span class="nav-title">Agro Advisor AI</span>
+            </div>
+            <div class="nav-actions">
+                <button class="nav-btn" id="settingsBtn">
+                    <i class="fas fa-cog"></i> <span class="nav-text" id="settingsText" data-i18n="settingsText">Settings</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            <h1 class="page-title" id="dashboardTitle" data-i18n="dashboardTitle">Dashboard</h1>
+            
+            <!-- Feature Cards Grid -->
+            <div class="feature-grid">
+                <!-- Voice & Text Chat -->
+                <div class="dashboard-card glass-card" onclick="location.href='voice-chat.html'">
+                    <div class="card-icon green-glow">
+                        <span style="font-size: 2rem;">🎤</span>
+                    </div>
+                    <h3 id="voiceTitle" data-i18n="voiceTitle">Voice & Text Chat</h3>
+                    <p id="voiceDesc" data-i18n="voiceDesc">AI farming assistant with voice and text support</p>
+                    <button class="card-btn">Open</button>
+                </div>
+
+                <!-- Disease Detection -->
+                <div class="dashboard-card glass-card" onclick="location.href='disease.html'">
+                    <div class="card-icon red-glow">
+                        <span style="font-size: 2rem;">🍃</span>
+                    </div>
+                    <h3 id="diseaseTitle" data-i18n="diseaseTitle">Disease Detection</h3>
+                    <p id="diseaseDesc" data-i18n="diseaseDesc">Detect plant diseases from photos instantly</p>
+                    <button class="card-btn">Open</button>
+                </div>
+
+                <!-- Income Estimation -->
+                <div class="dashboard-card glass-card" onclick="location.href='income.html'">
+                    <div class="card-icon yellow-glow">
+                        <span style="font-size: 2rem;">💰</span>
+                    </div>
+                    <h3 id="incomeTitle" data-i18n="incomeTitle">Income Estimation</h3>
+                    <p id="incomeDesc" data-i18n="incomeDesc">Calculate potential earnings from crops</p>
+                    <button class="card-btn">Open</button>
+                </div>
+
+                <!-- Weather Forecast -->
+                <div class="dashboard-card glass-card" onclick="location.href='weather.html'">
+                    <div class="card-icon blue-glow">
+                        <span style="font-size: 2rem;">🌤️</span>
+                    </div>
+                    <h3 id="weatherTitle" data-i18n="weatherTitle">Weather Forecast</h3>
+                    <p id="weatherDesc" data-i18n="weatherDesc">Live weather & 7-day forecast</p>
+                    <button class="card-btn">Open</button>
+                </div>
+
+                <!-- Crop Suggestion -->
+                <div class="dashboard-card glass-card" onclick="location.href='crop.html'">
+                    <div class="card-icon green-glow">
+                        <span style="font-size: 2rem;">🌱</span>
+                    </div>
+                    <h3 id="cropTitle" data-i18n="cropTitle">Crop Suggestion</h3>
+                    <p id="cropDesc" data-i18n="cropDesc">AI-powered crop recommendations</p>
+                    <button class="card-btn">Open</button>
+                </div>
+
+                <!-- Document Upload -->
+                <div class="dashboard-card glass-card" onclick="location.href='documents.html'">
+                    <div class="card-icon purple-glow">
+                        <span style="font-size: 2rem;">📄</span>
+                    </div>
+                    <h3 id="docTitle" data-i18n="docTitle">Documents</h3>
+                    <p id="docDesc" data-i18n="docDesc">Upload soil reports & crop data</p>
+                    <button class="card-btn">Open</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="language.js"></script>
+    <script src="dashboard.js"></script>
+    <script>
+        // Settings dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const settingsBtn = document.getElementById('settingsBtn');
+            let settingsDropdownActive = false;
+            
+            // Create settings dropdown menu
+            const settingsDropdown = document.createElement('div');
+            settingsDropdown.id = 'settingsDropdown';
+            settingsDropdown.className = 'settings-dropdown';
+            settingsDropdown.innerHTML = `
+                <div class="dropdown-item" onclick="location.href='settings.html'">
+                    <i class="fas fa-user"></i> <span data-i18n="profileTitle">Profile</span>
+                </div>
+                <div class="dropdown-item" id="themeToggle">
+                    <i class="fas fa-adjust"></i> <span id="themeText">Dark Mode</span>
+                </div>
+                <div class="dropdown-item logout-item" onclick="logoutUser()">
+                    <i class="fas fa-sign-out-alt"></i> <span data-i18n="logoutText">Sign Out</span>
+                </div>
+            `;
+            
+            // Add dropdown to DOM
+            document.querySelector('.top-nav').appendChild(settingsDropdown);
+            
+            // Set initial theme text based on saved theme
+            const savedTheme = localStorage.getItem('theme');
+            const themeText = document.getElementById('themeText');
+            if (savedTheme === 'light' && themeText) {
+                themeText.textContent = 'Dark Mode';
+            } else if (themeText) {
+                themeText.textContent = 'Light Mode';
+            }
+            
+            // Toggle settings dropdown on settings button click
+            settingsBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                settingsDropdownActive = !settingsDropdownActive;
+                settingsDropdown.style.display = settingsDropdownActive ? 'block' : 'none';
+            });
+            
+            // Close dropdown when clicking elsewhere
+            document.addEventListener('click', function(e) {
+                if (settingsDropdownActive && !settingsBtn.contains(e.target) && !settingsDropdown.contains(e.target)) {
+                    settingsDropdownActive = false;
+                    settingsDropdown.style.display = 'none';
+                }
+            });
+            
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const currentTheme = document.body.classList.contains('light-mode') ? 'light' : 'dark';
+                    
+                    if (currentTheme === 'dark') {
+                        document.body.classList.add('light-mode');
+                        localStorage.setItem('theme', 'light');
+                        if (themeText) themeText.textContent = 'Light Mode';
+                    } else {
+                        document.body.classList.remove('light-mode');
+                        localStorage.setItem('theme', 'dark');
+                        if (themeText) themeText.textContent = 'Dark Mode';
+                    }
+                    
+                    // Close dropdown
+                    settingsDropdownActive = false;
+                    settingsDropdown.style.display = 'none';
+                });
+            }
+            
+            // Logout function
+            window.logoutUser = function() {
+                // Confirm logout
+                if (confirm('Are you sure you want to sign out?')) {
+                    // Clear user session
+                    localStorage.removeItem('currentUser');
+                    // Redirect to login page
+                    window.location.href = './signup.html';
+                }
+            };
+        });
+    </script>
+</body>
+</html>

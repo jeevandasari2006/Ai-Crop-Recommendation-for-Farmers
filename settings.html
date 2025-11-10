@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Agro Advisor AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <div class="page-container">
+        <!-- Header -->
+        <header class="page-header">
+            <button class="back-btn" onclick="location.href='dashboard.html'">
+                <i class="fas fa-arrow-left"></i> <span id="backText">Back</span>
+            </button>
+            <h1 id="pageTitle">Settings</h1>
+            <div></div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="page-content">
+            <div class="settings-container">
+                <!-- Profile Section -->
+                <div class="setting-section glass-card">
+                    <h2 id="profileTitle">Profile</h2>
+                    <div class="profile-info">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="profile-details">
+                            <h3 id="userName">User Name</h3>
+                            <p id="userEmail">user@email.com</p>
+                        </div>
+                    </div>
+                    <button class="setting-btn" id="editProfileBtn">
+                        <i class="fas fa-edit"></i> <span id="editProfileText">Edit Profile</span>
+                    </button>
+                </div>
+
+                <!-- Language Settings -->
+                <div class="setting-section glass-card">
+                    <h2 id="languageTitle">Language</h2>
+                    <p id="languageDesc">Choose your preferred language</p>
+                    <div class="language-grid">
+                        <button class="lang-option" onclick="changeLanguage('en')">
+                            <span>English</span>
+                        </button>
+                        <button class="lang-option" onclick="changeLanguage('hi')">
+                            <span>हिंदी (Hindi)</span>
+                        </button>
+                        <button class="lang-option" onclick="changeLanguage('ta')">
+                            <span>தமிழ் (Tamil)</span>
+                        </button>
+                        <button class="lang-option" onclick="changeLanguage('te')">
+                            <span>తెలుగు (Telugu)</span>
+                        </button>
+                        <button class="lang-option" onclick="changeLanguage('mr')">
+                            <span>मराठी (Marathi)</span>
+                        </button>
+                        <button class="lang-option" onclick="changeLanguage('kn')">
+                            <span>ಕನ್ನಡ (Kannada)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Land Details -->
+                <div class="setting-section glass-card">
+                    <h2 id="landTitle">Land Details</h2>
+                    <div class="form-group">
+                        <label id="soilTypeLabel">Soil Type</label>
+                        <select id="soilType">
+                            <option value="loamy">Loamy</option>
+                            <option value="clay">Clay</option>
+                            <option value="sandy">Sandy</option>
+                            <option value="silt">Silt</option>
+                            <option value="peat">Peat</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label id="regionLabel">Region</label>
+                        <input type="text" id="region" placeholder="Enter your region">
+                    </div>
+                    <div class="form-group">
+                        <label id="landSizeLabel">Land Size (acres)</label>
+                        <input type="number" id="landSize" placeholder="Enter land size" min="0" step="0.1">
+                    </div>
+                    <button class="setting-btn" id="saveLandBtn">
+                        <i class="fas fa-save"></i> <span id="saveLandText">Save Land Details</span>
+                    </button>
+                </div>
+
+                <!-- Removed theme settings and logout as they are now in the dashboard navigation -->
+            </div>
+        </main>
+    </div>
+
+    <script src="language.js"></script>
+    <script src="settings.js"></script>
+</body>
+</html>
